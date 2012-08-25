@@ -1,0 +1,14 @@
+<header><h1>Active tasks</h1></header>
+
+  <div class="tasklist">
+<% @tasks.each do |task| %>
+  <article>
+    <%= fields_for(task) do |f| %>
+    <%= f.label :name, task.name %>
+    <div class="taskCheckbox"><%= link_to 'complete', task_path(task, completed: 1), method: :put %></div>
+    <% end %> 
+  </article> 
+<% end %>
+  </div>
+
+<%= link_to 'New Task', new_task_path %>
