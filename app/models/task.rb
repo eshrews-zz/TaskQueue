@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
 
   validates :name, :activationDelay, :presence => true
 
-  scope :active, where('nextActivationDate <= (?)', Time.now)
+  scope :active, where('nextActivationDate <= (?) and completed = "f"', Time.now)
 
   def activationDelay=(value)
     self.lastActivationOffset = value
