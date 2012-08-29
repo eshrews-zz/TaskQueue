@@ -73,21 +73,36 @@ class TasksController < ApplicationController
     end
   end
 
-  def update
-    Rails.logger.info("PARAMS: #{params.inspect}")
+  def edit
     @task = Task.find(params[:id])
+  end
+   
+  def update
+    #Rails.logger.info("PARAMS: #{params.inspect}")
+    #@task = Task.find(params[:id])
     
     #This contruct could probably use some work
     #and alternatively i could have used another url
     #like /tasks/1/complete . Not sure if using post variables
     #is better  
-    if params[:completed].to_i == 1
-      @task.completed = true
-      @task.save()
-    end
-    redirect_to :root 
+    #if params[:completed].to_i == 1
+    #  @task.completed = true
+    #  @task.save()
+    #end
+
   end
 
+  def complete
+    @task = Task.find(params[:id])
 
+    @task.completed = true
+    @task.save()
 
+    respond_to do |format|
+      format.html { redirect_to :root }
+      format.js
+    end
+
+    
+  end
 end

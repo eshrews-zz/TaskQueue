@@ -1,5 +1,7 @@
 TaskQueue::Application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    put :complete, on: :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

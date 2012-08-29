@@ -2,12 +2,10 @@
 
   <div class="tasklist">
 <% @tasks.each do |task| %>
-  <article>
-    <%= fields_for(task) do |f| %>
-    <%= f.label :name, task.name %>
-    <div class="taskCheckbox"><%= link_to 'complete', task_path(task, completed: 1), method: :put %></div>
-    <% end %> 
-  </article> 
+  <%= div_for task do %>
+  <%=  task.name %>
+  <div class="taskCheckbox"><%= link_to 'complete', complete_task_path(task), method: :put, remote: true %></div>
+  <% end %> 
 <% end %>
   </div>
 
